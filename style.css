@@ -1,0 +1,41 @@
+* {
+  font-family: "Asap", sans-serif;
+}
+
+.container-fluid {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0),
+    rgb(81, 0, 255)
+  );
+}
+
+.navbar-brand {
+  font-size: 40px;
+}
+
+.today {
+  margin-bottom: 10px;
+  width: 100%;
+  height: auto;
+  border: 2px;
+  border-style: solid;
+}
+
+.future {
+  display: flex;
+}
+
+.card {
+  background-color: rgba(81, 0, 255, 0.095);
+  margin: 5px;
+}
+
+body {
+  margin: 15px;
+}
+
+.btn {
+  color: black;
+  background-color: rgb(219, 202, 255);
+}
