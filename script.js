@@ -86,13 +86,40 @@ function getWeather() {
 
 function displayWeather(resp) {
   console.log(resp);
+  console.log(city.value);
   var todaysWeather = document.querySelector(".today");
+  var todaysDate = new Date(resp.current.dt * 1000);
   todaysWeather.innerHTML = `<div class="current-city">
-    City Name:  <br />
-    Temp: ${resp.daily[0].temp.day} ℉<br />
-    Wind: ${resp.daily[0].wind_speed} mph<br />
-    Humidity: ${resp.daily[0].humidity}% <br />
-    UV Index: ${resp.daily[0].uvi}<br />`;
+    Current Weather in ${city.value}  <br />
+    on ${todaysDate} <br>
+    <img src="http://openweathermap.org/img/wn/10d@4x.png"> <br>
+    Temp: ${resp.current.temp} ℉<br />
+    Wind: ${resp.current.wind_speed} mph<br />
+    Humidity: ${resp.current.humidity}% <br />
+    UV Index: ${resp.current.uvi}<br />`;
+
+  var futureWeather = document.querySelector(".future");
+  futureWeather.innerHTML = resp.daily
+    .map((day, idx) => {
+      if (idx <= 4) {
+        console.log(day);
+        var dt = new Date(day.dt * 1000);
+        return `<div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">${dt.toDateString()}</h5>
+        <img src="http://openweathermap.org/img/wn/${
+          day.weather[0].icon
+        }@2x.png"> <br>
+        <p class="card-text">
+          Temp: ${day.temp.day} ℉<br />
+          Wind: ${day.wind_speed} mph<br />
+          Humidity: ${day.humidity}%<br />
+        </p>
+      </div>
+    </div>`;
+      }
+    })
+    .join("");
 }
 
 addClickers();
