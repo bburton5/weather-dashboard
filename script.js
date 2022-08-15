@@ -1,13 +1,16 @@
 var apiKey = "196df1c55f3df94443139756f2fc08c6";
 
-function addClickers() {
+document.getElementById("city").addEventListener("input", function () {
+  var city = document.querySelector("input").value;
+  console.log(city);
+
   document
     .getElementById("btnGetWeather")
     .addEventListener("click", getWeather());
-}
+});
 
 function getWeather() {
-  var city = document.getElementById("city").value;
+  city = document.querySelector("input").value;
   console.log(city);
   var apiURLCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
   fetch(apiURLCoordinates)
@@ -45,11 +48,11 @@ function getWeather() {
 
 function displayWeather(resp) {
   console.log(resp);
-  console.log(city.value);
+  console.log(city);
   var todaysWeather = document.querySelector(".today");
   var todaysDate = new Date(resp.current.dt * 1000);
   todaysWeather.innerHTML = `<div class="current-city">
-    Current Weather in ${city.value}  <br />
+    Current Weather in ${city}  <br />
     on ${todaysDate} <br>
     <img src="http://openweathermap.org/img/wn/10d@4x.png"> <br>
     Temp: ${resp.current.temp} ℉<br />
@@ -89,6 +92,3 @@ function displayWeather(resp) {
     })
     .join("");
 }
-
-addClickers();
-getWeather();
