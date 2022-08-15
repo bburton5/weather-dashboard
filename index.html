@@ -24,12 +24,20 @@
         <a class="navbar-brand" href="#">Weather Dashboard</a>
         <form class="d-flex" role="search">
           <input
+            id="city"
+            value="seattle"
             class="form-control me-2"
             type="search"
             placeholder="Search for a city..."
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button
+            id="btnGetWeather"
+            class="btn btn-outline-success"
+            type="submit"
+          >
+            Search
+          </button>
         </form>
       </div>
     </nav>
@@ -52,51 +60,6 @@
             <div class="card-body">
               <h5 class="card-title">Future 1 Date</h5>
               <p class="card-text">
-                <img src="..." class="card-img-top" alt="..." /> <br />
-                Temp: <br />
-                Wind: <br />
-                Humidity: <br />
-              </p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Future 2 Date</h5>
-              <p class="card-text">
-                <img src="..." class="card-img-top" alt="..." /> <br />
-                Temp: <br />
-                Wind: <br />
-                Humidity: <br />
-              </p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Future 3 Date</h5>
-              <p class="card-text">
-                <img src="..." class="card-img-top" alt="..." /> <br />
-                Temp: <br />
-                Wind: <br />
-                Humidity: <br />
-              </p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Future 4 Date</h5>
-              <p class="card-text">
-                <img src="..." class="card-img-top" alt="..." /> <br />
-                Temp: <br />
-                Wind: <br />
-                Humidity: <br />
-              </p>
-            </div>
-          </div>
-          <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Future 5 Date</h5>
-              <p class="card-text">
-                <img src="..." class="card-img-top" alt="..." /> <br />
                 Temp: <br />
                 Wind: <br />
                 Humidity: <br />
@@ -106,5 +69,6 @@
         </div>
       </div>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>
