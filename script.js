@@ -6,32 +6,6 @@ function addClickers() {
     .addEventListener("click", getWeather());
 }
 
-// function getCoordinates() {
-//   var city = document.getElementById("city").value;
-//   console.log(city);
-//   var apiURLCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
-//   fetch(apiURLCoordinates)
-//     .then((resp) => {
-//       if (!resp.ok) throw new Error(resp.statusText);
-//       return resp.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//       console.log(data[0].lat);
-//       console.log(data[0].lon);
-//       var lat = data[0].lat;
-//       var lon = data[0].lon;
-//       console.log(lat);
-//       console.log(lon);
-//       getWeather(data);
-//     })
-//     .catch(function () {
-//       console.log(Error);
-//     });
-// }
-
-// getCoordinates();
-
 function getWeather() {
   var city = document.getElementById("city").value;
   console.log(city);
@@ -68,21 +42,6 @@ function getWeather() {
       console.log(Error);
     });
 }
-//   var language = "en";
-//   var units = "imperial";
-//   var apiURLWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}&lang=${language}`;
-//   fetch(apiURLWeather)
-//     .then((resp) => {
-//       if (!resp.ok) throw new Error(resp.statusText);
-//       return resp.json();
-//     })
-//     .then((data) => {
-//       displayWeather(data);
-//     })
-//     .catch(function () {
-//       console.log(Error);
-//     });
-// }
 
 function displayWeather(resp) {
   console.log(resp);
@@ -96,8 +55,17 @@ function displayWeather(resp) {
     Temp: ${resp.current.temp} ℉<br />
     Wind: ${resp.current.wind_speed} mph<br />
     Humidity: ${resp.current.humidity}% <br />
-    UV Index: ${resp.current.uvi}<br />`;
-
+    <div class="uvindex">UV Index: ${resp.current.uvi}<br /></div>`;
+  var uviValue = resp.current.uvi;
+  console.log(uviValue);
+  var grabUvi = document.getElementsByClassName("uvindex");
+  if (uviValue <= 2) {
+    grabUvi[0].classList.add("favorable");
+  } else if (uviValue <= 5) {
+    grabUvi[0].classList.add("moderate");
+  } else if (uviValue > 5) {
+    grabUvi[0].classList.add("severe");
+  }
   var futureWeather = document.querySelector(".future");
   futureWeather.innerHTML = resp.daily
     .map((day, idx) => {
