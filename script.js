@@ -1,14 +1,20 @@
 var apiKey = "196df1c55f3df94443139756f2fc08c6";
 
+// code begins once city is inputted and search button is clicked
 document.getElementById("btnGetWeather").addEventListener("click", function () {
   var city = document.querySelector("input").value;
   console.log(city);
+
+  // first obtaining latitute and longitute coordinates from inputted city name via api
   var apiURLCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
   fetch(apiURLCoordinates)
     .then((resp) => {
-      if (!resp.ok) throw new Error(resp.statusText);
-      return resp.json();
+      if (!resp.ok) {
+        throw new Error(resp.statusText);
+      } else return resp.json();
     })
+
+    // inputting the obtained latitude and longitude data back into api to obtain weather
     .then((data) => {
       console.log(data);
       console.log(data[0].lat);
@@ -22,8 +28,9 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
       var apiURLWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}&lang=${language}`;
       fetch(apiURLWeather)
         .then((resp) => {
-          if (!resp.ok) throw new Error(resp.statusText);
-          return resp.json();
+          if (!resp.ok) {
+            throw new Error(resp.statusText);
+          } else return resp.json();
         })
         .then((data) => {
           displayWeather(data);
@@ -36,6 +43,7 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
       console.log(Error);
     });
 
+  // creates/updates html for current weather with api info
   function displayWeather(resp) {
     console.log(resp);
     console.log(city);
@@ -49,6 +57,8 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
     Wind: ${resp.current.wind_speed} mph<br />
     Humidity: ${resp.current.humidity}% <br />
     <div class="uvindex">UV Index: ${resp.current.uvi}<br /></div>`;
+
+    // css changes based on severity of uv index
     var uviValue = resp.current.uvi;
     console.log(uviValue);
     var grabUvi = document.getElementsByClassName("uvindex");
@@ -59,6 +69,8 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
     } else if (uviValue > 5) {
       grabUvi[0].classList.add("severe");
     }
+
+    // creates/updates html for future weather with api info
     var futureWeather = document.querySelector(".future");
     futureWeather.innerHTML = resp.daily
       .map((day, idx) => {

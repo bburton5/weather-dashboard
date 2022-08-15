@@ -45,6 +45,7 @@ body {
   background-color: rgb(219, 202, 255);
 }
 
+/* the following classes are for the uvindex rating, also PS the .uvindex class css was taken from bootstrap */
 .uvindex {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
