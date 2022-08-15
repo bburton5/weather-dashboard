@@ -42,9 +42,9 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
     var todaysWeather = document.querySelector(".today");
     var todaysDate = new Date(resp.current.dt * 1000);
     todaysWeather.innerHTML = `<div class="current-city">
-    Current Weather in ${city.value}  <br />
+    Current Weather in ${city}  <br />
     on ${todaysDate} <br>
-    <img src="http://openweathermap.org/img/wn/10d@4x.png"> <br>
+    <img src="http://openweathermap.org/img/wn/${resp.current.weather[0].icon}@4x.png"> <br>
     Temp: ${resp.current.temp} ℉<br />
     Wind: ${resp.current.wind_speed} mph<br />
     Humidity: ${resp.current.humidity}% <br />
