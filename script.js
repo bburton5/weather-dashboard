@@ -8,14 +8,14 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
   // first obtaining latitute and longitute coordinates from inputted city name via api
   var apiURLCoordinates = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
   fetch(apiURLCoordinates)
-    .then((resp) => {
+    .then(function (resp) {
       if (!resp.ok) {
         throw new Error(resp.statusText);
       } else return resp.json();
     })
 
     // inputting the obtained latitude and longitude data back into api to obtain weather
-    .then((data) => {
+    .then(function (data) {
       console.log(data);
       console.log(data[0].lat);
       console.log(data[0].lon);
@@ -27,12 +27,12 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
       var units = "imperial";
       var apiURLWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}&lang=${language}`;
       fetch(apiURLWeather)
-        .then((resp) => {
+        .then(function (resp) {
           if (!resp.ok) {
             throw new Error(resp.statusText);
           } else return resp.json();
         })
-        .then((data) => {
+        .then(function (data) {
           displayWeather(data);
         })
         .catch(function () {
@@ -73,8 +73,8 @@ document.getElementById("btnGetWeather").addEventListener("click", function () {
     // creates/updates html for future weather with api info
     var futureWeather = document.querySelector(".future");
     futureWeather.innerHTML = resp.daily
-      .map((day, idx) => {
-        if (idx <= 4) {
+      .map(function (day, idx) {
+        if (idx <= 5) {
           console.log(day);
           var dt = new Date(day.dt * 1000);
           return `<div class="card" style="width: 18rem">
