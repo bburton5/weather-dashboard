@@ -10,7 +10,7 @@
 ## Usage
 
 This webpage can be used to know what the weather will be and what it currently is. This can be useful because people can plan their events around weather conditions or avoid doing certain things during harsh weather.
-![screenshot of the Weather Dashboard Home Page](./image1.png)
+![screenshot of the Weather Dashboard Home Page](./image.png)
 
 ## Credits
 
